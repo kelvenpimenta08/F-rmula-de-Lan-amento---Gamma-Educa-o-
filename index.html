@@ -692,6 +692,8 @@ async function saveProjectCloud(id){
 async function initCloud(){
   if(!CLOUD_ON || !window.supabase) return;
   try{ sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY); }catch(e){ console.warn(e); return; }
+  sb.auth.onAuthStateChange((_e,session)=>{ if(session&&session.user&&!cloudReady) onLogin(session.user); });
+  try{ const le=localStorage.getItem('gamma_last_email'); if(le) document.getElementById('atEmail').value=le; }catch(e){}
   document.getElementById('atBtn').onclick=doAuth;
   document.getElementById('atPass').addEventListener('keydown',e=>{ if(e.key==='Enter') doAuth(); });
   document.getElementById('atToggle').onclick=()=>{
@@ -710,8 +712,9 @@ async function doAuth(){
   const pass=document.getElementById('atPass').value;
   const msg=document.getElementById('atMsg'); msg.style.color='var(--red)'; msg.textContent='';
   if(!email||!pass){ msg.textContent='Preencha e-mail e senha.'; return; }
+  try{ localStorage.setItem('gamma_last_email',email); }catch(e){}
   let res;
-  if(signupMode) res=await sb.auth.signUp({email,password:pass});
+  if(signupMode) res=await sb.auth.signUp({email,password:pass,options:{emailRedirectTo:location.origin}});
   else res=await sb.auth.signInWithPassword({email,password:pass});
   if(res.error){ msg.textContent=res.error.message; return; }
   if(signupMode && !res.data.session){ msg.style.color='var(--green-d)'; msg.textContent='Conta criada. Se pedir confirmação por e-mail, confirme e entre.'; return; }
