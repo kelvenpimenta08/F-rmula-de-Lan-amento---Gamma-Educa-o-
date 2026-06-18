@@ -198,6 +198,8 @@ body{background:var(--bg);color:var(--txt);font-family:'Poppins',system-ui,sans-
 .auth-card .at-msg{font-size:12px;margin-top:12px;min-height:16px;line-height:1.4}
 .auth-card .at-alt{font-size:12px;color:var(--mute);margin-top:16px;text-align:center}
 .auth-card .at-alt a{color:var(--green-d);cursor:pointer;font-weight:600}
+.at-keep{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--mute);text-transform:none;letter-spacing:0;margin:0 0 16px;cursor:pointer}
+.at-keep input{width:16px;height:16px;accent-color:var(--green);cursor:pointer;margin:0}
 /* modal interno */
 .modal-ov{position:fixed;inset:0;background:rgba(13,13,13,.45);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:300;padding:20px}
 .modal-ov.show{display:flex;animation:fade .2s}
@@ -508,17 +510,18 @@ td.meta-goal{color:var(--green-d);font-weight:700;white-space:nowrap}
 
 <!-- AUTH OVERLAY (só aparece se o Supabase estiver configurado) -->
 <div class="auth-ov" id="authOv">
-  <div class="auth-card">
+  <form class="auth-card" id="atForm" autocomplete="on">
     <div class="lg">Gamma<b> Educação</b></div>
     <div class="at-sub">Entre para acessar seus projetos salvos na nuvem, de qualquer aparelho.</div>
-    <label>E-mail</label>
-    <input id="atEmail" type="email" autocomplete="username" placeholder="seu@email.com">
-    <label>Senha</label>
-    <input id="atPass" type="password" autocomplete="current-password" placeholder="••••••••">
-    <button class="at-btn" id="atBtn">Entrar</button>
+    <label for="atEmail">E-mail</label>
+    <input id="atEmail" name="email" type="email" autocomplete="username" placeholder="seu@email.com">
+    <label for="atPass">Senha</label>
+    <input id="atPass" name="password" type="password" autocomplete="current-password" placeholder="••••••••">
+    <label class="at-keep"><input type="checkbox" id="atKeep" checked> Manter conectado neste aparelho</label>
+    <button class="at-btn" id="atBtn" type="submit">Entrar</button>
     <div class="at-msg" id="atMsg"></div>
     <div class="at-alt"><a id="atToggle">Criar conta</a></div>
-  </div>
+  </form>
 </div>
 
 <!-- MODAL INTERNO (prompt/confirm no estilo do site) -->
@@ -689,13 +692,17 @@ async function saveProjectCloud(id){
     else await sb.from('projects').update({data,updated_at:now}).eq('id',id);
   }catch(e){ console.warn('saveProjectCloud',e); }
 }
+function makeClient(keep){
+  sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storage:keep?window.localStorage:window.sessionStorage}});
+  sb.auth.onAuthStateChange((_e,session)=>{ if(session&&session.user&&!cloudReady) onLogin(session.user); });
+}
 async function initCloud(){
   if(!CLOUD_ON || !window.supabase) return;
-  try{ sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY); }catch(e){ console.warn(e); return; }
-  sb.auth.onAuthStateChange((_e,session)=>{ if(session&&session.user&&!cloudReady) onLogin(session.user); });
+  const keep=localStorage.getItem('gamma_keep')!=='0';
+  const kc=document.getElementById('atKeep'); if(kc) kc.checked=keep;
+  try{ makeClient(keep); }catch(e){ console.warn(e); return; }
   try{ const le=localStorage.getItem('gamma_last_email'); if(le) document.getElementById('atEmail').value=le; }catch(e){}
-  document.getElementById('atBtn').onclick=doAuth;
-  document.getElementById('atPass').addEventListener('keydown',e=>{ if(e.key==='Enter') doAuth(); });
+  document.getElementById('atForm').addEventListener('submit',e=>{ e.preventDefault(); doAuth(); });
   document.getElementById('atToggle').onclick=()=>{
     signupMode=!signupMode;
     document.getElementById('atBtn').textContent=signupMode?'Criar conta':'Entrar';
@@ -713,6 +720,9 @@ async function doAuth(){
   const msg=document.getElementById('atMsg'); msg.style.color='var(--red)'; msg.textContent='';
   if(!email||!pass){ msg.textContent='Preencha e-mail e senha.'; return; }
   try{ localStorage.setItem('gamma_last_email',email); }catch(e){}
+  const keep=(document.getElementById('atKeep')||{checked:true}).checked;
+  try{ localStorage.setItem('gamma_keep',keep?'1':'0'); }catch(e){}
+  makeClient(keep);
   let res;
   if(signupMode) res=await sb.auth.signUp({email,password:pass,options:{emailRedirectTo:location.origin}});
   else res=await sb.auth.signInWithPassword({email,password:pass});
@@ -721,6 +731,7 @@ async function doAuth(){
   await onLogin(res.data.user);
 }
 async function onLogin(user){
+  if(cloudReady) return;
   uid=user.id; myEmailV=(user.email||'').toLowerCase(); cloudReady=true;
   document.getElementById('authOv').classList.remove('show');
   document.getElementById('btnLogout').style.display='';
