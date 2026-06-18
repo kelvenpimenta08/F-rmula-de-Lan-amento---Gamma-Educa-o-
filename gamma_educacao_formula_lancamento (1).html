@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fórmula do Lançamento — Gamma Educação</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --preto:    #262626;
+  --preto2:   #1C1C1C;
+  --preto3:   #FFFFFF;
+  --surface:  #F5F5F5;
+  --surface2: #EEEEEE;
+  --border:   #E0E0E0;
+  --border2:  #CCCCCC;
+
+  --teal:     #00C99F;
+  --teal-dim: rgba(0,201,159,0.10);
+  --teal-mid: rgba(0,201,159,0.30);
+  --teal-glow:rgba(0,201,159,0.07);
+  --branco:   #A7E7E7;
+  --white:    #FFFFFF;
+
+  --text:     #1A1A1A;
+  --text2:    #444444;
+  --text3:    #888888;
+
+  --coral:    #F06050;
+  --coral-dim:rgba(240,96,80,0.10);
+  --blue:     #5B9EF0;
+  --blue-dim: rgba(91,158,240,0.10);
+  --amber:    #F0A832;
+  --amber-dim:rgba(240,168,50,0.10);
+  --purple:   #9B7FEA;
+  --purple-dim:rgba(155,127,234,0.10);
+
+  --radius:   8px;
+  --radius-lg:14px;
+  --font-head:'Baloo 2', sans-serif;
+  --font-body:'Source Sans 3', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: #FFFFFF;
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── WRAPPER ─────────────────────────────── */
+.wrapper { max-width: 880px; margin: 0 auto; padding: 0 24px 80px; }
+
+/* ── HEADER BRAND ────────────────────────── */
+.brand-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  line-height: 1;
+}
+
+.brand-logo .keep {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--preto);
+  letter-spacing: -0.02em;
+}
+
+.brand-logo .ads {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--teal);
+  letter-spacing: -0.02em;
+}
+
+.brand-sub {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-top: 4px;
+}
+
+.brand-k {
+  width: 40px; height: 40px;
+  background: var(--teal);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--preto);
+}
+
+/* ── HERO ────────────────────────────────── */
+.hero { padding: 0 0 40px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: var(--teal-dim);
+  border: 1px solid var(--teal-mid);
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: blink 2s infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(30px, 5vw, 50px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--preto);
+  margin-bottom: 14px;
+}
+
+.hero h1 .accent { color: var(--teal); }
+
+.hero p {
+  font-size: 16px;
+  color: var(--text2);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* ── PROGRESS ────────────────────────────── */
+.progress-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.progress-info { flex: 1; }
+
+.progress-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+
+.progress-track {
+  height: 5px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--teal);
+  border-radius: 3px;
+  transition: width 0.4s cubic-bezier(.4,0,.2,1);
+  width: 0%;
+  box-shadow: 0 0 10px rgba(0,201,159,0.3);
+}
+
+.progress-count {
+  font-family: var(--font-head);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--teal);
+  white-space: nowrap;
+}
+
+.progress-count span { font-size: 13px; color: var(--text3); font-family: var(--font-body); font-weight: 400; }
+
+/* ── LEGEND ──────────────────────────────── */
+.legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  color: var(--text2);
+  border: 1px solid var(--border);
+}
+
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+/* ── TIMELINE NAV ────────────────────────── */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.tl-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: block;
+}
+
+.tl-item:hover {
+  border-color: var(--teal-mid);
+  background: rgba(0,201,159,0.05);
+}
+
+.tl-dot { width: 6px; height: 6px; border-radius: 50%; margin-bottom: 10px; }
+
+.tl-phase {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 3px;
+}
+
+.tl-title {
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text2);
+  line-height: 1.3;
+}
+
+.tl-when { font-size: 11px; color: var(--text3); margin-top: 3px; }
+
+/* ── SECTION ─────────────────────────────── */
+.section { margin-bottom: 36px; scroll-margin-top: 20px; }
+
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px 24px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-header::after {
+  content: attr(data-num);
+  position: absolute;
+  right: -8px;
+  top: -16px;
+  font-family: var(--font-head);
+  font-size: 90px;
+  font-weight: 800;
+  opacity: 0.06;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.section-num {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  padding-top: 4px;
+  white-space: nowrap;
+}
+
+.section-info { flex: 1; }
+
+.section-title {
+  font-family: var(--font-head);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  line-height: 1.25;
+}
+
+.section-sub {
+  font-size: 13px;
+  opacity: 0.6;
+  line-height: 1.5;
+}
+
+.section-badge {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.12);
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+.section-body {
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Header color variants */
+.sh-01 { background: #F5F5F5; color: #1A1A1A; }
+.sh-02 { background: #F0EEFF; color: var(--purple); }
+.sh-03 { background: #FFF8EC; color: #7A5200; }
+.sh-04 { background: #E6FAF5; color: #006650; }
+.sh-05 { background: #E6FAF8; color: #006650; }
+
+/* ── SUBSECTION ──────────────────────────── */
+.subsection { border-bottom: 1px solid var(--border); }
+.subsection:last-child { border-bottom: none; }
+
+.subsection-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 14px 24px 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── CHECK ITEM ──────────────────────────── */
+.check-item {
+  display: flex;
+  gap: 14px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.check-item:last-child { border-bottom: none; }
+.check-item:hover { background: rgba(0,201,159,0.07); }
+.check-item.done { opacity: 0.5; }
+
+.chk {
+  width: 20px; height: 20px;
+  border: 1.5px solid var(--border2);
+  border-radius: 5px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.check-item:hover .chk { border-color: var(--teal); }
+.check-item.done .chk { background: var(--teal); border-color: var(--teal); box-shadow: 0 0 8px rgba(0,201,159,0.25); }
+
+.chk-icon {
+  opacity: 0;
+  transform: scale(0.4);
+  transition: all 0.2s cubic-bezier(.34,1.56,.64,1);
+}
+
+.check-item.done .chk-icon { opacity: 1; transform: scale(1); }
+
+.chk-icon svg { display: block; }
+
+.check-body { flex: 1; min-width: 0; }
+
+.check-label {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.check-item.done .check-label { text-decoration: line-through; color: var(--text3); }
+
+.check-tags { display: flex; flex-direction: column; gap: 6px; }
+
+.ctag {
+  display: flex;
+  gap: 8px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border-left: 2px solid transparent;
+}
+
+.ctag-key {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-top: 2px;
+  min-width: 58px;
+}
+
+.t-ex  { background: var(--blue-dim);    border-color: var(--blue);   color: #8ABEF5; }
+.t-ex  .ctag-key { color: var(--blue); }
+.t-nd  { background: var(--teal-glow);   border-color: var(--teal);   color: #70D9C0; }
+.t-nd  .ctag-key { color: var(--teal); }
+.t-tr  { background: var(--coral-dim);   border-color: var(--coral);  color: #F09088; }
+.t-tr  .ctag-key { color: var(--coral); }
+
+/* ── PRODUCT CARDS ───────────────────────── */
+.prod-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 18px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.prod-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: #FFFFFF;
+}
+
+.prod-emoji { font-size: 22px; margin-bottom: 10px; }
+
+.prod-name {
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.prod-desc { font-size: 12px; color: var(--text2); line-height: 1.55; }
+
+/* ── METRICS ─────────────────────────────── */
+.sec-title {
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--preto);
+}
+
+.sec-title span { color: var(--teal); }
+
+.mtable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  font-size: 13px;
+}
+
+.mtable thead th {
+  background: var(--surface2);
+  padding: 11px 16px;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  border-bottom: 1px solid var(--border);
+}
+
+.mtable tbody tr { border-bottom: 1px solid var(--border); }
+.mtable tbody tr:last-child { border-bottom: none; }
+.mtable tbody tr:hover { background: rgba(0,201,159,0.07); }
+
+.mtable tbody td {
+  padding: 11px 16px;
+  color: var(--text2);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.mtable tbody td:first-child { color: var(--text); font-weight: 600; }
+.mtable tbody td:nth-child(2) { color: var(--teal); font-family: var(--font-head); font-size: 12px; font-weight: 700; white-space: nowrap; }
+
+/* ── BUDGET ──────────────────────────────── */
+.btable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.btable thead th {
+  background: var(--surface2);
+  padding: 11px 16px;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  border-bottom: 1px solid var(--border);
+}
+
+.btable tbody tr { border-bottom: 1px solid var(--border); }
+.btable tbody tr:last-child { border-bottom: none; }
+.btable tbody tr:hover { background: rgba(0,201,159,0.07); }
+.btable tbody td { padding: 11px 16px; color: var(--text2); vertical-align: middle; }
+.btable tbody td:first-child { color: var(--text); font-weight: 600; }
+
+.bbar-wrap { display: flex; align-items: center; gap: 10px; }
+.bbar { height: 5px; border-radius: 3px; min-width: 4px; }
+.bpct { font-family: var(--font-head); font-size: 13px; font-weight: 700; white-space: nowrap; }
+
+/* ── DIVIDER ─────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 44px 0;
+}
+
+/* ── RESET ───────────────────────────────── */
+.reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text3);
+  background: none;
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 14px;
+}
+
+.reset-btn:hover { color: var(--teal); border-color: var(--teal-mid); background: rgba(0,201,159,0.07); }
+
+/* ── FOOTER ──────────────────────────────── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0 0;
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-text { font-size: 12px; color: var(--text3); line-height: 1.7; }
+.footer-text strong { color: var(--text2); }
+
+.footer-logo {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  opacity: 0.5;
+}
+
+.footer-logo .fk { font-family: var(--font-head); font-weight: 800; font-size: 18px; color: var(--preto); }
+.footer-logo .fa { font-family: var(--font-head); font-weight: 800; font-size: 18px; color: var(--teal); }
+
+/* ── TEAL HIGHLIGHT ──────────────────────── */
+.teal-line {
+  display: inline-block;
+  width: 30px;
+  height: 3px;
+  background: var(--teal);
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+/* ── RESPONSIVE ──────────────────────────── */
+@media (max-width: 580px) {
+  .timeline { grid-template-columns: repeat(2, 1fr); }
+  .prod-grid { grid-template-columns: 1fr; }
+  .legend { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 28px; }
+  .section-badge { display: none; }
+  .check-item { padding: 14px 16px; }
+  .section-header { padding: 18px 16px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- BRAND BAR -->
+  <div class="brand-bar">
+    <div>
+      <div class="brand-logo">
+        <span class="keep">Gamma </span><span class="ads">Educação</span>
+      </div>
+      <div class="brand-sub">educação &amp; estratégia</div>
+    </div>
+    <div class="brand-k">G</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">Método Caio Martins · Adaptado Gamma Educação</div>
+    <h1>Fórmula do<br><span class="accent">Lançamento</span></h1>
+    <p>Checklist completo de execução — da fundação ao tiro de misericórdia. Com exemplos, recursos necessários e onde entra o tráfego pago em cada fase.</p>
+
+    <div class="progress-wrap">
+      <div class="progress-info">
+        <div class="progress-label">Progresso geral</div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
+      </div>
+      <div class="progress-count" id="progressCount">0 <span>/ 35</span></div>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">↺ Reiniciar checklist</button>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-item" style="background:var(--blue-dim);border-color:rgba(91,158,240,0.2)">
+      <div class="legend-dot" style="background:var(--blue)"></div>
+      <span><strong style="color:var(--blue)">Exemplo</strong> — caso real ou aplicação prática</span>
+    </div>
+    <div class="legend-item" style="background:var(--teal-glow);border-color:var(--teal-mid)">
+      <div class="legend-dot" style="background:var(--teal)"></div>
+      <span><strong style="color:var(--teal)">Precisa ter</strong> — recurso ou dado necessário</span>
+    </div>
+    <div class="legend-item" style="background:var(--coral-dim);border-color:rgba(240,96,80,0.2)">
+      <div class="legend-dot" style="background:var(--coral)"></div>
+      <span><strong style="color:var(--coral)">Tráfego pago</strong> — campanha, objetivo e verba</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:var(--border2)"></div>
+      <span>☐ Clique no item para marcar como concluído</span>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline">
+    <a class="tl-item" href="#s01"><div class="tl-dot" style="background:var(--text3)"></div><div class="tl-phase">Fase 01</div><div class="tl-title">Fundação</div><div class="tl-when">D-30 a D-15</div></a>
+    <a class="tl-item" href="#s02"><div class="tl-dot" style="background:var(--purple)"></div><div class="tl-phase">Fase 02</div><div class="tl-title">Pré-campanha VIP</div><div class="tl-when">D-15 a D-1</div></a>
+    <a class="tl-item" href="#s03"><div class="tl-dot" style="background:var(--amber)"></div><div class="tl-phase">Fase 03</div><div class="tl-title">Buzz</div><div class="tl-when">D-7 a D-2</div></a>
+    <a class="tl-item" href="#s04"><div class="tl-dot" style="background:var(--teal)"></div><div class="tl-phase">Fase 04</div><div class="tl-title">O Evento</div><div class="tl-when">Dias do evento</div></a>
+    <a class="tl-item" href="#s05"><div class="tl-dot" style="background:#3DD6C0"></div><div class="tl-phase">Fase 05</div><div class="tl-title">Pós-evento</div><div class="tl-when">D+1 a D+15</div></a>
+    <a class="tl-item" href="#metricas"><div class="tl-dot" style="background:var(--coral)"></div><div class="tl-phase">Extra</div><div class="tl-title">Métricas e verba</div><div class="tl-when">Referência</div></a>
+  </div>
+
+  <!-- ═══ FASE 01 ═══ -->
+  <div class="section" id="s01">
+    <div class="section-header sh-01" data-num="01">
+      <div class="section-num">Fase 01</div>
+      <div class="section-info">
+        <div class="section-title">Fundação — Estrutura antes do lançamento</div>
+        <div class="section-sub">D-30 a D-15 · Tudo definido antes de qualquer campanha rodar</div>
+      </div>
+      <div class="section-badge">D-30</div>
+    </div>
+    <div class="section-body">
+      <div class="subsection"><div class="subsection-label">1.1 · Fato novo — a âncora do evento</div><div id="g-fato"></div></div>
+      <div class="subsection"><div class="subsection-label">1.2 · Canais de venda</div><div id="g-canais"></div></div>
+      <div class="subsection">
+        <div class="subsection-label">1.3 · Curadoria de produto</div>
+        <div class="prod-grid">
+          <div class="prod-card" style="border-color:rgba(240,96,80,0.3)">
+            <div class="prod-emoji">🐂</div>
+            <div class="prod-name" style="color:var(--coral)">Boi de Piranha</div>
+            <div class="prod-desc">Produto de entrada. Margem baixa ou zero. Função: trazer volume. O cliente vem por causa dele. Ex: piso 60×60 por R$19,90/m².</div>
+          </div>
+          <div class="prod-card" style="border-color:rgba(240,168,50,0.3)">
+            <div class="prod-emoji">🥩</div>
+            <div class="prod-name" style="color:var(--amber)">Filezinho</div>
+            <div class="prod-desc">Produto notável com margem real. O vendedor redireciona do Boi para cá. Boa margem + boa percepção de valor.</div>
+          </div>
+          <div class="prod-card" style="border-color:rgba(0,201,159,0.3)">
+            <div class="prod-emoji">🍮</div>
+            <div class="prod-name" style="color:var(--teal)">Sobremesa</div>
+            <div class="prod-desc">Alta margem. Compra por impulso após o principal. Ex: rejunte premium, serviço de instalação. Margem de 60–80%.</div>
+          </div>
+        </div>
+        <div id="g-produtos"></div>
+      </div>
+      <div class="subsection"><div class="subsection-label">1.4 · Up-sell e Cross-sell</div><div id="g-upsell"></div></div>
+    </div>
+  </div>
+
+  <!-- ═══ FASE 02 ═══ -->
+  <div class="section" id="s02">
+    <div class="section-header sh-02" data-num="02">
+      <div class="section-num">Fase 02</div>
+      <div class="section-info">
+        <div class="section-title">Pré-campanha VIP</div>
+        <div class="section-sub">D-15 a D-1 · Faturamento antecipado + comunidade + escassez</div>
+      </div>
+      <div class="section-badge">D-15</div>
+    </div>
+    <div class="section-body"><div id="g-vip"></div></div>
+  </div>
+
+  <!-- ═══ FASE 03 ═══ -->
+  <div class="section" id="s03">
+    <div class="section-header sh-03" data-num="03">
+      <div class="section-num">Fase 03</div>
+      <div class="section-info">
+        <div class="section-title">Buzz — Fazer barulho antes de abrir a venda</div>
+        <div class="section-sub">D-7 a D-2 · Alcance máximo · "Não compre agora" · Maior fatia de verba</div>
+      </div>
+      <div class="section-badge">D-7</div>
+    </div>
+    <div class="section-body"><div id="g-buzz"></div></div>
+  </div>
+
+  <!-- ═══ FASE 04 ═══ -->
+  <div class="section" id="s04">
+    <div class="section-header sh-04" data-num="04">
+      <div class="section-num">Fase 04</div>
+      <div class="section-info">
+        <div class="section-title">O Evento — Execução dia a dia</div>
+        <div class="section-sub">Dias do evento · 1 oferta nova por dia · Escassez crescente · Timer no último dia</div>
+      </div>
+      <div class="section-badge">Evento</div>
+    </div>
+    <div class="section-body"><div id="g-evento"></div></div>
+  </div>
+
+  <!-- ═══ FASE 05 ═══ -->
+  <div class="section" id="s05">
+    <div class="section-header sh-05" data-num="05">
+      <div class="section-num">Fase 05</div>
+      <div class="section-info">
+        <div class="section-title">Pós-evento — Debriefing e tiro de misericórdia</div>
+        <div class="section-sub">D+1 a D+15 · Recuperar rebarba · Reativar base · Calibrar o próximo</div>
+      </div>
+      <div class="section-badge">D+15</div>
+    </div>
+    <div class="section-body"><div id="g-pos"></div></div>
+  </div>
+
+  <!-- ═══ MÉTRICAS ═══ -->
+  <div class="divider"></div>
+  <div id="metricas">
+    <div class="sec-title"><span class="teal-line"></span>Métricas por fase — o que medir e quando</div>
+    <table class="mtable">
+      <thead><tr><th>Métrica</th><th>Meta</th><th>Como medir</th></tr></thead>
+      <tbody id="metricsBody"></tbody>
+    </table>
+
+    <br>
+    <div class="sec-title" style="margin-top:8px"><span class="teal-line"></span>Distribuição de verba de tráfego por fase</div>
+    <table class="btable">
+      <thead><tr><th>Fase</th><th>% do budget</th><th>Objetivo</th></tr></thead>
+      <tbody id="budgetBody"></tbody>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-text">
+      <strong>Fonte:</strong> Palestra Caio Martins — Maestria 03 + briefing do método completo.<br>
+      Adaptado pela <strong>Gamma Educação</strong> para uso em clientes de varejo físico, e-commerce e negócios locais.
+    </div>
+    <div class="footer-logo"><span class="fk">Gamma </span><span class="fa">Educação</span></div>
+  </div>
+
+</div>
+
+<script>
+const CHECK = `<svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+const ITEMS = {
+  'g-fato': [
+    { label:"Definir o fato novo — a justificativa que torna a oferta legítima e urgente", ex:"Aniversário da loja (7 anos → 7% extra em toda loja). Black Friday. Carnaval de Ofertas. Virada de estação. Sem fato novo, é só desconto. Com fato novo, é um evento.", nd:"Calendário anual com as 3 datas de lançamento definidas com mínimo 30 dias de antecedência.", tr:null },
+    { label:"Definir duração do evento: mínimo 2 dias, máximo 3 dias", ex:"Evento de 2 dias: sexta e sábado. Mais de 3 dias dissolve a urgência — o cliente espera e não compra.", nd:"Data de início e fim definidas. Escala do time confirmada para os dias do evento.", tr:null },
+  ],
+  'g-canais': [
+    { label:"Listar todos os canais ativos e definir oferta e produto específico por canal", ex:"Loja física: Boi com desconto presencial + cross-sell de alto valor. WhatsApp: oferta exclusiva para quem mandar mensagem antes de visitar. Site: Filezinho com frete grátis acima de R$500.", nd:"Tabela de ofertas por canal (produto, preço evento, condição especial). Não abrir canal novo durante o evento.", tr:null },
+    { label:"Se tiver influenciador ou afiliado: briefar com no mínimo 15 dias de antecedência", ex:"Influenciador local de decoração com 10k+ seguidores reais na praça. Custo: permuta de produto ou comissão rastreada por cupom ou link UTM.", nd:"Acordo por escrito. Link rastreável ou cupom exclusivo por influenciador. Produto reservado para entrega.", tr:null },
+  ],
+  'g-produtos': [
+    { label:"Definir 1 a 3 Bois de Piranha por categoria — produto de entrada com margem sacrificada", ex:"Piso 60×60 por R$19,90/m². Tinta econômica 18L com 35% off. Calcular quanto aceita perder por cliente trazido.", nd:"Produtos de maior volume de busca. Margem sacrificada calculada antes — não descobrir no evento.", tr:"Campanha de tráfego frio com o Boi como criativo principal (imagem do produto + preço). Objetivo: Tráfego ou Alcance. Verba: 30% do budget do evento." },
+    { label:"Definir os Filezinhos por categoria — produto notável com margem real", ex:"Porcelanato retificado 80×80 com 20% off. Vendedor redireciona quem chegou pelo Boi com argumento de durabilidade e acabamento.", nd:"Lista dos 5–10 produtos de maior margem por categoria. Script do vendedor para transição Boi → Filezinho.", tr:"Remarketing para quem clicou no Boi mas não converteu. Objetivo: Conversão ou Mensagem. Verba: 20% do budget." },
+    { label:"Definir as Sobremesas — alta margem para adicionar no caixa", ex:"Rejunte premium, nivelador, impermeabilizante, serviço de entrega expressa. Margem de 60–80%. Posicionar próximo ao caixa.", nd:"Produtos fisicamente próximos ao caixa. Oferta de bundle: 'Leva o rejunte por R$19 — normalmente R$35'.", tr:"Pós-evento: campanha de mensagem para quem comprou o Filezinho oferecendo a Sobremesa. Segmentado por categoria." },
+  ],
+  'g-upsell': [
+    { label:"Montar tabela de up-sell por categoria: produto entrada → produto premium", ex:"Piso 60×60 R$29/m² → upgrade 80×80 R$49/m². Em 50m²: diferença de R$1.000 por cliente. 10 clientes fazendo upgrade = R$10.000 a mais sem cliente novo.", nd:"Tabela de up-sell impressa ou no sistema para cada vendedor. Argumento de valor para cada upgrade.", tr:null },
+    { label:"Montar mapa de cross-sell entre categorias", ex:"Comprou porcelanato → oferece rejunte + nivelador + vaso. Comprou tinta → fita + rolo + bandeja. Saiu da categoria mas ficou dentro da loja.", nd:"Mapa de combinações lógicas por produto. Cupom de cross-sell na boca do caixa.", tr:"Campanha pós-evento: anúncio para quem comprou categoria X com oferta de categoria Y. Custom audience por produto comprado." },
+    { label:"Posicionar oferta de cross-sell na boca do caixa com desconto imediato e prazo curto", ex:"Cupom de R$100 para compra de sofá de R$2.000 — válido só naquele momento. Cliente que comprou R$1.500 saiu com R$3.500. Funciona porque ele está no modo compra.", nd:"Cupons impressos prontos antes do evento. Operador do caixa treinado para apresentar no momento certo.", tr:null },
+    { label:"Treinar o time no roteiro de up-sell e cross-sell com role-play antes do evento", ex:"Um faz de cliente, outro de vendedor. Repetir até sair natural. No dia do evento não tem tempo pra pensar.", nd:"Roteiro escrito e distribuído. Sessão de treino agendada. Gerente valida se o time está pronto.", tr:null },
+  ],
+  'g-vip': [
+    { label:"Definir lista de convidados VIP: clientes A+ e engajados no Instagram", ex:"Clientes que compraram acima de R$2.000 nos últimos 12 meses + arquitetos parceiros + seguidores que respondem stories com frequência.", nd:"CRM segmentado por valor de compra. Exportação de engajados do Instagram.", tr:"Campanha de mensagem para lista VIP com link ou número exclusivo. Objetivo: Mensagem. Verba: R$200–500 — audiência quente, custo baixo." },
+    { label:"Criar oferta exclusiva VIP com condição melhor que o evento público em ao menos 1 item", ex:"Evento público: 15% off no porcelanato. VIP: 20% + frete grátis + entrega prioritária. A diferença não precisa ser grande — precisa ser percebida.", nd:"Oferta VIP calculada (a margem sustenta?). Comunicação clara da diferença VIP vs público.", tr:null },
+    { label:"Criar grupo VIP no WhatsApp com vagas limitadas e escassez real", ex:"Caio lançou 250 vagas só nos stories e zerou em 3 horas. Mensagem: 'Quem entrou, entrou. Quem ficou de fora vai pagar mais amanhã.'", nd:"WhatsApp Business configurado. Número de vagas definido antes de divulgar — escassez falsa queima confiança.", tr:"Se a base orgânica for fraca: campanha de mensagem para audiência morna (visitantes do perfil nos últimos 30 dias). Verba: R$300–800." },
+    { label:"Duração da janela VIP: máximo 24 horas", ex:"Abre às 18h do dia anterior. Fecha às 18h quando o evento público abre. Janela curta aumenta urgência e força decisão rápida.", nd:"Comunicação de abertura e fechamento programadas. Alguém para monitorar e responder durante a janela.", tr:null },
+    { label:"Soltar ao menos 1 oferta surpresa dentro do grupo VIP durante a janela", ex:"Às 21h: 'Oferta relâmpago — próximas 2 horas: kit banheiro completo com 25% off + brinde.' Cria movimento e prova que vale estar no grupo.", nd:"Oferta surpresa definida com antecedência. Produto em estoque confirmado.", tr:null },
+  ],
+  'g-buzz': [
+    { label:"D-7 a D-4: teaser — anunciar que algo está vindo, sem revelar a oferta", ex:"'Semana que vem tem algo grande aqui no Galpão. Fica ligado.' Post + stories + reels curto de bastidores da preparação.", nd:"Calendário de conteúdo dos 7 dias. Mínimo 1 post por dia. Pessoa responsável por stories diários.", tr:"Campanha de Alcance com vídeo de teaser. Lookalike 1–3% da base + raio geográfico. Objetivo: Alcance. Verba: 25% do budget total do evento." },
+    { label:"D-3 a D-2: fase 'não compre agora' — comunicação agressiva de desejo sem venda", ex:"'Não compre piso agora. Espera até sexta.' Contraintuitivo = gera curiosidade + salva clientes que iam comprar no concorrente.", nd:"Copy do 'não compre' aprovada. Criativo simples funciona: texto grande em fundo de cor.", tr:"Campanha de vídeo/imagem com a copy 'não compre'. Objetivo: Alcance + Engajamento. Toda interação vira audiência de remarketing para o evento. Verba: 35% do budget total — A MAIOR FATIA vai aqui." },
+    { label:"D-1: produto isca — agora aparece a oferta, chamando para o evento", ex:"'Amanhã abre. Piso 60×60 por R$19,90/m² — só durante o evento.' O Boi com o preço do evento aparece pela primeira vez.", nd:"Criativo com produto isca e preço do evento. Estoque do Boi confirmado para o volume esperado.", tr:"Campanha de conversão/mensagem com o Boi. Público: remarketing de quem viu os teasers + VIP que não comprou. Objetivo: Mensagem/Conversão. Verba: 20% do budget." },
+    { label:"Ativar todos os canais simultaneamente na fase de Buzz", ex:"Stories diários + reels + feed + WhatsApp da loja + grupo VIP + influenciador (se tiver). Sem canal silencioso nessa fase.", nd:"Calendário com horário de postagem por canal. Ferramenta de agendamento (Meta Business Suite, Manyou).", tr:"Se tiver Google Ads: Display com banner do evento para remarketing de visitantes do site. YouTube: pre-roll de 15s com teaser. Verba extra — não corta o Meta para isso." },
+  ],
+  'g-evento': [
+    { label:"Antes de abrir: ritual de energia com o time (10–15 minutos)", ex:"Luz apagada, música alta, afirmações em voz alta. A energia que sai dessa sala define o humor do atendimento no dia inteiro.", nd:"Playlist definida. Presença obrigatória de todos antes da abertura. Gerente lidera.", tr:null },
+    { label:"Primeiro dia: oferta principal + 1 novidade exclusiva para quem foi até a loja", ex:"Abre com o Boi no preço anunciado. Novidade do dia: setor de móveis com 30% off — divulgado ao vivo só para quem foi presencialmente.", nd:"Oferta do dia 1 definida e em estoque. Novidade guardada — não divulgar antes de abrir.", tr:"Campanhas de mensagem e conversão no ar desde as 8h. Retargeting de quem interagiu no Buzz. Verba: 100% do budget do dia ativo." },
+    { label:"Segundo dia: escassez entra — 'só até amanhã' em toda comunicação", ex:"'Só temos 47 unidades do porcelanato 80×80. Ontem vendemos 38.' WhatsApp no grupo: 'Último dia amanhã — o que sobrar some.'", nd:"Dados reais de estoque para a comunicação. Números verdadeiros — escassez falsa queima confiança.", tr:"Campanha de urgência: 'Últimas horas'. Público: quem viu mas não converteu. Aumentar orçamento 30% em relação ao dia anterior." },
+    { label:"Último dia: trocar toda comunicação para 'último dia' + relógio de contagem regressiva em tudo", ex:"Site: banner de countdown até as 23h59. Stories: timer nativo do Instagram. WhatsApp: mensagem às 9h, 14h e 20h avisando o fim.", nd:"Timer/countdown configurado no site. Mensagens de WhatsApp escritas e programadas para os 3 horários.", tr:"Campanha de última hora: copy agressiva de urgência. Público: toda audiência que interagiu e não comprou. Aumentar verba 50% — maior conversão do evento se a comunicação estiver certa." },
+    { label:"Monitorar métricas em tempo real: clientes, ticket médio e itens por venda a cada 2h", ex:"Meta: 100 clientes. Às 14h chegaram 40. Gerente avalia: precisa acelerar divulgação ou o ritmo está adequado?", nd:"Dashboard simples (planilha no celular ou BI). Alguém designado para monitorar e comunicar ao time.", tr:"Acompanhar CPL das campanhas ativas. Se CPL alto: pausar público frio e concentrar verba em remarketing quente." },
+    { label:"Garantir que a logística de entrega suporta o volume de vendas do evento", ex:"100 clientes × 50kg médio = 5 toneladas para entregar. Caio vendeu bem e a logística travou — gerou reclamação na praça inteira.", nd:"Capacidade de entrega calculada antes. Veículo extra reservado se necessário. Prazo informado na hora da venda.", tr:null },
+  ],
+  'g-pos': [
+    { label:"Tiro de misericórdia — oferta para leads que entraram no VIP mas não compraram", ex:"Evento tinha 15% off. Tiro: 10% off por mais 72 horas — condição pior que o evento, mas ainda vantajosa para pegar a rebarba.", nd:"Lista de contatos que interagiram mas não compraram. Oferta calculada — a margem sustenta o desconto?", tr:"Campanha de mensagem para audiência que clicou mas não converteu. Copy: 'Você quase foi — ainda dá tempo.' Objetivo: Mensagem. Verba: R$300–600. Duração: 3 dias." },
+    { label:"Reativar clientes que compraram com oferta de produto complementar (cross-sell pós-evento)", ex:"Cliente que comprou piso recebe WhatsApp 7 dias depois: 'Seu rejunte e nivelador estão aqui — 10% de desconto só essa semana.'", nd:"CRM com registro do que cada cliente comprou. Mensagem de reativação escrita antes do evento terminar.", tr:"Campanha de mensagem para lista de compradores segmentada por categoria. Personalizado: quem comprou piso vê oferta de rejunte." },
+    { label:"Debriefing com o time: reunião de até 1h em até 3 dias após o evento", ex:"Cada vendedor fala 1 que funcionou e 1 que não funcionou. Caio corrigiu o primeiro evento e cresceu de 192% para 292% no segundo.", nd:"Data da reunião definida ANTES do evento acontecer. Template de debriefing pronto.", tr:"Revisar métricas das campanhas: CPL, ROAS, custo por cliente por canal. O que alimenta o próximo Buzz." },
+    { label:"Auditar estoque pós-evento: o que faltou, o que sobrou, o que não precisava comprar", ex:"Planilha: produto | meta | vendido | sobrou | faltou. Esse dado calibra a negociação com o fornecedor no próximo evento.", nd:"Acesso ao sistema de estoque. Planilha preenchida em até 24h após o encerramento.", tr:null },
+    { label:"Comparar resultado com a média do período — não só com o evento anterior", ex:"Caio caiu 18% vs 2023 e achou que tinha perdido. Mas cresceu 64% vs média de 2024 — e 80% mais em lucro. Só percebeu quando olhou o número certo.", nd:"DRE do evento (faturamento, CMV, margem). Média dos meses anteriores para base de comparação.", tr:null },
+    { label:"Definir a data do próximo evento antes de encerrar o debriefing", ex:"Caio faz 3 eventos por ano. Definir a data na reunião de debriefing garante que a fundação do próximo começa no prazo.", nd:"Calendário anual de lançamentos. Comprometimento da equipe com a próxima data.", tr:null },
+  ],
+};
+
+const METRICS = [
+  ["Custo por lead VIP","R$3–12 por entrada no grupo","Campanhas de mensagem — custo por resultado"],
+  ["Alcance fase Buzz","3–5× o público habitual","Meta Ads — alcance único da campanha de teaser"],
+  ["CPL do evento","Benchmark da praça","Total gasto em ads ÷ total de leads gerados"],
+  ["Clientes atendidos","100% da meta de vagas","PDV ou contagem na entrada"],
+  ["Ticket médio do evento","150–200% da média normal","Faturamento total ÷ nº de clientes"],
+  ["Itens por venda","3,5+ itens por cliente","Total de itens ÷ nº de vendas"],
+  ["Taxa de cross-sell","40%+ das vendas","Vendas com produto de outro setor ÷ total"],
+  ["Ruptura de produto","Zero nos top 20 SKUs","Conferência de estoque a cada 2h"],
+  ["Margem bruta do evento","Meta definida pré-evento","Faturamento – CMV ÷ Faturamento"],
+  ["ROAS das campanhas","Mínimo 3× por fase","Faturamento atribuído ÷ verba investida"],
+  ["Conversão tiro de misericórdia","15–25% dos leads reabordados","Vendas ÷ total de leads contatados no pós"],
+];
+
+const BUDGET = [
+  { fase:"Pré-campanha VIP", pct:10, color:"#9B7FEA", obj:"Mensagem para base quente. Custo baixo, retorno rápido." },
+  { fase:"Buzz D-7 a D-4 (teaser)", pct:25, color:"#F0A832", obj:"Alcance e reconhecimento. Plantar desejo no público frio." },
+  { fase:"Buzz D-3 a D-2 ('não compre')", pct:35, color:"#F06050", obj:"Maior fatia. Gerar audiência de remarketing qualificada." },
+  { fase:"D-1 (produto isca)", pct:10, color:"#F0A832", obj:"Conversão e mensagem. Público: quem viu os teasers." },
+  { fase:"Dias do evento", pct:10, color:"#00C99F", obj:"Remarketing ativo. Urgência crescente. Concentrar no último dia." },
+  { fase:"Pós-evento (tiro + cross-sell)", pct:10, color:"#3DD6C0", obj:"Recuperação de rebarba e cross-sell por categoria." },
+];
+
+let done = new Set(JSON.parse(localStorage.getItem('gamma_launch') || '[]'));
+
+function total() { return Object.values(ITEMS).reduce((a,g)=>a+g.length,0); }
+
+function renderGroup(gid) {
+  const items = ITEMS[gid];
+  const el = document.getElementById(gid);
+  if (!el) return;
+  el.innerHTML = '';
+  items.forEach((item, idx) => {
+    const id = `${gid}-${idx}`;
+    const d = done.has(id);
+    const div = document.createElement('div');
+    div.className = `check-item${d?' done':''}`;
+    div.innerHTML = `
+      <div class="chk"><div class="chk-icon">${CHECK}</div></div>
+      <div class="check-body">
+        <div class="check-label">${item.label}</div>
+        <div class="check-tags">
+          ${item.ex?`<div class="ctag t-ex"><div class="ctag-key">Exemplo</div><div>${item.ex}</div></div>`:''}
+          ${item.nd?`<div class="ctag t-nd"><div class="ctag-key">Precisa</div><div>${item.nd}</div></div>`:''}
+          ${item.tr?`<div class="ctag t-tr"><div class="ctag-key">Tráfego</div><div>${item.tr}</div></div>`:''}
+        </div>
+      </div>`;
+    div.addEventListener('click', () => {
+      done.has(id)?done.delete(id):done.add(id);
+      div.classList.toggle('done', done.has(id));
+      localStorage.setItem('gamma_launch', JSON.stringify([...done]));
+      updateProgress();
+    });
+    el.appendChild(div);
+  });
+}
+
+function updateProgress() {
+  const t = total(), n = done.size, p = Math.round(n/t*100);
+  document.getElementById('progressBar').style.width = p+'%';
+  document.getElementById('progressCount').innerHTML = `${n} <span>/ ${t}</span>`;
+}
+
+function resetAll() {
+  done.clear();
+  localStorage.setItem('gamma_launch','[]');
+  Object.keys(ITEMS).forEach(renderGroup);
+  updateProgress();
+}
+
+function renderMetrics() {
+  const tb = document.getElementById('metricsBody');
+  METRICS.forEach(row => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = row.map(c=>`<td>${c}</td>`).join('');
+    tb.appendChild(tr);
+  });
+}
+
+function renderBudget() {
+  const tb = document.getElementById('budgetBody');
+  BUDGET.forEach(row => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${row.fase}</td><td><div class="bbar-wrap"><div class="bbar" style="width:${row.pct*1.8}px;background:${row.color}"></div><div class="bpct" style="color:${row.color}">${row.pct}%</div></div></td><td>${row.obj}</td>`;
+    tb.appendChild(tr);
+  });
+}
+
+Object.keys(ITEMS).forEach(renderGroup);
+renderMetrics();
+renderBudget();
+updateProgress();
+</script>
+</body>
+</html>
